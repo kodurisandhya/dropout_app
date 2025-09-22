@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dropout Prediction</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="left-section">
+      <h1>Student Dropout Prediction</h1>
+      <form method="POST">
+        <label>Attendance (%)</label>
+        <input type="number" name="attendance" required min="0" max="100">
+
+        <label>Grades (%)</label>
+        <input type="number" name="grades" required min="0" max="100">
+
+        <label>Participation Score (1-10)</label>
+        <input type="number" name="participation" required min="1" max="10">
+
+        <label>Financial Issues</label>
+        <select name="financial_issue">
+          <option>No</option>
+          <option>Yes</option>
+        </select>
+
+        <label>Family Support</label>
+        <select name="family_support">
+          <option>Good</option>
+          <option>Poor</option>
+        </select>
+
+        <label>Health Issues</label>
+        <select name="health_issue">
+          <option>No</option>
+          <option>Yes</option>
+        </select>
+
+        <button type="submit">Predict</button>
+      </form>
+
+      {% if risk %}
+      <div class="result">
+        <h2>Prediction: {{ risk }}</h2>
+        <ul>
+          {% for s in suggestions %}
+          <li>{{ s }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Right section with scrolling message -->
+    <div class="right-section">
+  <marquee behavior="scroll" direction="up" scrollamount="3">
+    <h2 style="color:#cc0000;">⚠ Many students leave school early</h2>
+    <h3 style="color:#007BFF;">💡 Predicting dropout can save futures</h3>
+    <h3 style="color:#28a745;">📘 Education is the key to success</h3>
+  </marquee>
+</div>
+  </div>
+</body>
+</html>
